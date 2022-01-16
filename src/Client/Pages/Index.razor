@@ -3,9 +3,37 @@
 
 <h1>SnakeEyes</h1>
 <div>
-	<Dice Pips="4"/>
-	<Dice Pips="6"/>
+	<Dice Pips="@_game.Eye1"/>
+	<Dice Pips="@_game.Eye2"/>
 </div>
+<p>Score: @_game.Total</p>
+@if (!_game.HasSnakeEyes)
+{
+	<button @onclick="_game.Play">Play</button>
+} else
+{
+	<div class="alert alert-danger" role="alert">
+	  You've got SnakeEyes!
+	</div>
+	<button @onclick="_game.Restart">Restart</button>
+}
+
+
+<h2>Highscores</h2>
+@if(_game.Highscores.Count() == 0)
+{
+	<p>No highscores yet</p>
+} else
+{
+	<ul>
+		@foreach(var hs in _game.Highscores.OrderByDescending(x => x))
+		{
+			<li>
+				@hs
+			</li>
+		}
+	</ul>
+}
 
 @code{
 	private Game _game = new Game();

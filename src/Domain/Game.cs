@@ -30,6 +30,7 @@ namespace Domain
             _dice1 = new Dice();
             _dice2 = new Dice();
             Total = 0;
+            _snakeEyes = false;
         }
 
         public void Play()
